@@ -1,0 +1,24 @@
+module alu_4bit(
+  input [3:0] A,B,
+  input [2:0] opcode,
+  output reg carry,
+  output reg [3:0] y
+);
+  always@(*)
+    begin
+      carry=0;
+      case(opcode)
+        3'b000:{carry,y}=A+B;
+        3'b001:{carry,y}=A-B;
+        3'b010:y=A&B;
+        3'b011:y=A|B;
+        3'b100:y=~(A&B);
+        3'b101:y=~(A|B);
+        3'b110:y=~A;
+        3'b111:y=A>>1;
+        default:y=4'b000;
+      endcase
+    end
+endmodule
+        
+        
